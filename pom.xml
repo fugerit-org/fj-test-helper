@@ -22,7 +22,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java-version-compliance>1.8</java-version-compliance>
 	    <maven.compiler.source>${java-version-compliance}</maven.compiler.source>
-	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>	     	
+	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>	 
+	    <fj-version>0.8.6</fj-version>    	
 	</properties>
 
 	<licenses>
@@ -76,8 +77,16 @@
 
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-core</artifactId>
+				<version>${fj-version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-test-helper8</artifactId>
 				<version>${project.version}</version>
+				<scope>provided</scope>
 			</dependency>			
 
 		</dependencies>

@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-test-helper</artifactId>
-		<version>0.1.0</version>
+		<version>0.3.0</version>
 	</parent>
 
 	<name>fj-test-helper8</name>

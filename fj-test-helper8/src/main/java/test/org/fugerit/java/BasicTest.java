@@ -17,7 +17,7 @@ public class BasicTest {
 	
 	protected void failEx( Exception e ) {
 		String message = "Error : "+e;
-		logger.error( "Error "+e, e );
+		logger.error( message, e );
 		fail( message );
 	}
 	

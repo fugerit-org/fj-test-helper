@@ -7,16 +7,22 @@ import java.sql.Statement;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.test.db.helper.MemTestDBHelper;
 
+import test.org.fugerit.java.helpers.FailHelper;
+
 public class MemDBJunitBase extends BasicTest {
 
 	private Connection conn;
-	
-	public MemDBJunitBase() {
+
+	public MemDBJunitBase( boolean fail ) {
 		try {
-			this.conn = MemTestDBHelper.newConnection();
+			this.conn = MemTestDBHelper.newConnection( fail );
 		} catch ( Exception e) {
 			throw new ConfigRuntimeException( "Init error "+e, e );
 		}
+	}
+	
+	public MemDBJunitBase() {
+		this( FailHelper.NO_FAIL );
 	}
 
 	public Connection getConnection() {

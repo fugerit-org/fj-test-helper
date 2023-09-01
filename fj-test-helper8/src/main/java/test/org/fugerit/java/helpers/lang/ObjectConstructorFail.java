@@ -4,8 +4,12 @@ import test.org.fugerit.java.helpers.FailHelper;
 
 public class ObjectConstructorFail {
 
+	public ObjectConstructorFail( boolean fail ) {
+		FailHelper.fail( fail );
+	}
+
 	public ObjectConstructorFail() {
-		FailHelper.fail();
+		this( FailHelper.DO_FAIL );
 	}
 	
 }

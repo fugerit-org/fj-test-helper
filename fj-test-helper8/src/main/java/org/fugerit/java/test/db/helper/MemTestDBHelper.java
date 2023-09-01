@@ -18,9 +18,12 @@ import test.org.fugerit.java.helpers.FailHelper;
 
 public class MemTestDBHelper {
 
-	// do not instantiate
 	public MemTestDBHelper() {
-		FailHelper.fail();
+		this( FailHelper.NO_FAIL );
+	}
+	
+	public MemTestDBHelper( boolean fail ) {
+		FailHelper.fail( fail );
 	}
 	
 	public static final String DRV = "db-mode-dc-drv";
@@ -59,9 +62,14 @@ public class MemTestDBHelper {
     		}
     	}
     } 
+
+    public static Connection newConnection( boolean fail ) throws Exception {
+    	FailHelper.fail( fail );
+    	return newConnection( cf );
+    }
     
     public static Connection newConnection() throws Exception {
-    	return newConnection( cf );
+    	return newConnection( FailHelper.NO_FAIL );
     }
     
 

@@ -7,9 +7,19 @@ import test.org.fugerit.java.helpers.FailHelper;
 
 public class ReaderFail extends Reader {
 
+	private boolean fail;
+	
+	public ReaderFail() {
+		this( FailHelper.DO_FAIL );
+	}
+
+	public ReaderFail(boolean fail) {
+		this.fail = fail;
+	}
+
 	@Override
 	public int read(char[] cbuf, int off, int len) throws IOException {
-		FailHelper.fail();
+		FailHelper.fail( this.fail );
 		return 0;
 	}
 

@@ -8,13 +8,24 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.db.connect.ConnectionFactory;
 import org.fugerit.java.core.db.dao.DAOException;
 import org.fugerit.java.core.db.helpers.SQLScriptReader;
 import org.fugerit.java.core.db.metadata.DataBaseInfo;
 
+import test.org.fugerit.java.helpers.FailHelper;
+
 public class MemTestDBHelper {
 
+	public MemTestDBHelper() {
+		this( FailHelper.NO_FAIL );
+	}
+	
+	public MemTestDBHelper( boolean fail ) {
+		FailHelper.fail( fail );
+	}
+	
 	public static final String DRV = "db-mode-dc-drv";
 	public static final String URL = "db-mode-dc-url";
 	public static final String USR = "db-mode-dc-usr";
@@ -22,9 +33,16 @@ public class MemTestDBHelper {
 
 	private static Properties cf;
 	
-	private static Connection newConnection( Properties props ) throws Exception {
-		Class.forName( props.getProperty( DRV ) );
-		return DriverManager.getConnection( props.getProperty( URL ), props.getProperty( USR ), props.getProperty( PWD ) );
+	private static Connection newConnection( Properties props ) {
+		Connection conn = null;
+		try {
+			Class.forName( props.getProperty( DRV ) );
+			conn = DriverManager.getConnection( props.getProperty( URL ), props.getProperty( USR ), props.getProperty( PWD ) );
+		} catch (SQLException | ClassNotFoundException e) {
+			throw new ConfigRuntimeException( e );
+		}
+		return conn;
+		
 	}
 
     public static void init( String dbConnPath, String... dbInitScripts ) throws Exception
@@ -44,9 +62,14 @@ public class MemTestDBHelper {
     		}
     	}
     } 
+
+    public static Connection newConnection( boolean fail ) throws Exception {
+    	FailHelper.fail( fail );
+    	return newConnection( cf );
+    }
     
     public static Connection newConnection() throws Exception {
-    	return newConnection( cf );
+    	return newConnection( FailHelper.NO_FAIL );
     }
     
 
@@ -54,6 +77,7 @@ public class MemTestDBHelper {
 		return new ConnectionFactory() {
 			@Override
 			public void release() throws DAOException {
+				// do nothing method
 			}
 			
 			@Override

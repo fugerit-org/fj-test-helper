@@ -7,11 +7,11 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-bom</artifactId>
-		<version>1.2.3</version>
+		<version>1.3.1</version>
 		<relativePath></relativePath>
 	</parent>
 
-	<version>0.3.1</version>
+	<version>0.4.0</version>
 	<packaging>pom</packaging>
 
 	<name>fj-test-helper</name>
@@ -23,7 +23,7 @@
 		<java-version-compliance>1.8</java-version-compliance>
 	    <maven.compiler.source>${java-version-compliance}</maven.compiler.source>
 	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>	 
-	    <fj-version>8.1.0</fj-version>    	
+	    <fj-version>8.2.3</fj-version>    	
 	</properties>
 
 	<licenses>

@@ -4,18 +4,25 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.test.db.helper.MemTestDBHelper;
+
+import test.org.fugerit.java.helpers.FailHelper;
 
 public class MemDBJunitBase extends BasicTest {
 
 	private Connection conn;
+
+	public MemDBJunitBase( boolean fail ) {
+		try {
+			this.conn = MemTestDBHelper.newConnection( fail );
+		} catch ( Exception e) {
+			throw new ConfigRuntimeException( "Init error "+e, e );
+		}
+	}
 	
 	public MemDBJunitBase() {
-		try {
-			this.conn = MemTestDBHelper.newConnection();
-		} catch ( Exception e) {
-			throw new RuntimeException( "Init error "+e, e );
-		}
+		this( FailHelper.NO_FAIL );
 	}
 
 	public Connection getConnection() {

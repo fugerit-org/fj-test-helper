@@ -14,12 +14,12 @@ import test.org.fugerit.java.helpers.io.ReaderFail;
 public class TestReaderFail extends BasicTest {
 
 	@Test
-	public void testInit() {
-		Assert.assertThrows( ConfigRuntimeException.class, () -> {
-			try ( ReaderFail reader = new ReaderFail() ) {
-				logger.info( "test {}", StreamIO.readString(reader) );
-			}
-		} );
+	public void testInit() throws IOException {
+		try ( ReaderFail reader = new ReaderFail() ) {
+			Assert.assertThrows( ConfigRuntimeException.class, () -> {
+					StreamIO.readString(reader);
+			} );
+		}
 	}
 	
 	@Test 

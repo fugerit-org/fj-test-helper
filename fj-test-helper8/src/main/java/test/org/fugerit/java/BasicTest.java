@@ -9,17 +9,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class BasicTest {
 
-	protected static final Logger logger = log;	// this variable is kept for compatibility
+	protected static Logger logger = LoggerFactory.getLogger( BasicTest.class ); // this variable is kept for compatibility
 	
 	protected void failEx( Exception e ) {
 		String message = "Error : "+e;
-		logger.error( message, e );
+		log.error( message, e );
 		fail( message );
 	}
 	
@@ -32,7 +33,7 @@ public class BasicTest {
 		Object res = null;
 		try ( ObjectInputStream ois = new ObjectInputStream( new ByteArrayInputStream( data ) ) ) {
 			res = ois.readObject();
-			logger.info( "deserializeTest, read object : {}", res );
+			log.info( "deserializeTest, read object : {}", res );
 		} catch (ClassNotFoundException e) {
 			throw new IOException( e.toString(), e );
 		}
@@ -45,7 +46,7 @@ public class BasicTest {
 				ObjectOutputStream oos = new ObjectOutputStream( os ) ) {
 			oos.writeObject( value );
 			res = os.toByteArray();
-			logger.info( "serializeTest, total byte written : {}", res.length );
+			log.info( "serializeTest, total byte written : {}", res.length );
 		}
 		return res;
 	}

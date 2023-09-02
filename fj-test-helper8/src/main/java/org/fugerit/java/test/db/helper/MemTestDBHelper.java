@@ -14,17 +14,25 @@ import org.fugerit.java.core.db.dao.DAOException;
 import org.fugerit.java.core.db.helpers.SQLScriptReader;
 import org.fugerit.java.core.db.metadata.DataBaseInfo;
 
+import lombok.Getter;
+import lombok.ToString;
 import test.org.fugerit.java.helpers.FailHelper;
 
+@ToString
 public class MemTestDBHelper {
 
+	private static final String INFO = "MemTestDBHelper v1.0.0";
+	
 	public MemTestDBHelper() {
 		this( FailHelper.NO_FAIL );
 	}
 	
 	public MemTestDBHelper( boolean fail ) {
+		this.dbHelper = INFO;
 		FailHelper.fail( fail );
 	}
+	
+	@Getter private String dbHelper;
 	
 	public static final String DRV = "db-mode-dc-drv";
 	public static final String URL = "db-mode-dc-url";
@@ -45,30 +53,38 @@ public class MemTestDBHelper {
 		
 	}
 
-    public static void init( String dbConnPath, String... dbInitScripts ) throws Exception
+    public static Properties initWorker(  String dbConnPath, String... dbInitScripts )
+    {
+    	Properties props = null;
+    	try ( InputStream is = MemTestDBHelper.class.getClassLoader().getResourceAsStream( dbConnPath ) ) {
+    		props = new Properties();
+			props.load( is );
+        	try ( Connection conn = newConnection( props ) ) {
+        		for ( int k=0; k<dbInitScripts.length; k++ ) {
+        			try ( SQLScriptReader reader = new SQLScriptReader( MemTestDBHelper.class.getClassLoader().getResourceAsStream( dbInitScripts[k] ) ) ) {
+            			executeAll(reader, conn);
+            		}	
+        		}
+    		}	
+    	} catch (Exception e) {
+    		throw new ConfigRuntimeException( e );
+    	}
+    	return props;
+    } 
+	
+    public static void init( String dbConnPath, String... dbInitScripts )
     {
     	if ( cf == null ) {
-    		try ( InputStream is = MemTestDBHelper.class.getClassLoader().getResourceAsStream( dbConnPath ) ) {
-    			Properties props = new Properties();
-    			props.load( is );
-            	try ( Connection conn = newConnection( props ) ) {
-            		for ( int k=0; k<dbInitScripts.length; k++ ) {
-            			try ( SQLScriptReader reader = new SQLScriptReader( MemTestDBHelper.class.getClassLoader().getResourceAsStream( dbInitScripts[k] ) ) ) {
-                			executeAll(reader, conn);
-                			cf = props;
-                		}	
-            		}
-        		}	
-    		}
+    		cf =  initWorker(dbConnPath, dbInitScripts);
     	}
     } 
 
-    public static Connection newConnection( boolean fail ) throws Exception {
+    public static Connection newConnection( boolean fail ) {
     	FailHelper.fail( fail );
     	return newConnection( cf );
     }
     
-    public static Connection newConnection() throws Exception {
+    public static Connection newConnection() {
     	return newConnection( FailHelper.NO_FAIL );
     }
     

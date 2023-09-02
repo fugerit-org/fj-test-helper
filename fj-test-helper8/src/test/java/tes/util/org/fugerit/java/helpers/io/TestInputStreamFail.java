@@ -14,12 +14,12 @@ import test.org.fugerit.java.helpers.io.InputStreamFail;
 public class TestInputStreamFail extends BasicTest {
 
 	@Test
-	public void testInitFail() {
-		Assert.assertThrows( ConfigRuntimeException.class, () -> {
-			try ( InputStreamFail is = new InputStreamFail() ) {
-				logger.info( "test {}", StreamIO.readString(is) );
-			}
-		} );
+	public void testInitFail() throws IOException {
+		try ( InputStreamFail is = new InputStreamFail() ) {
+			Assert.assertThrows( ConfigRuntimeException.class, () -> {
+				StreamIO.readString(is);
+			} );
+		}
 	}
 	
 	@Test 

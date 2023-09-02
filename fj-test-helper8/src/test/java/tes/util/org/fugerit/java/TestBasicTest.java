@@ -15,9 +15,11 @@ public class TestBasicTest extends BasicTest {
 	
 	private static final String BASE_64_OBJ_FOUND = "rO0ABXNyACZ0ZXMudXRpbC5vcmcuZnVnZXJpdC5qYXZhLlNlcmlhbE9iamVjdP/9zzUBm0r0AgABTAAFZmllbGR0ABJMamF2YS9sYW5nL1N0cmluZzt4cHQABHRlc3Q=";
 	
+	private static final Exception CAUSE_EX = new ConfigException( "cause" );
+	
 	@Test
 	public void testFailEx() {
-		Assert.assertThrows( AssertionError.class , () -> { this.failEx( new ConfigException() ); } );
+		Assert.assertThrows( AssertionError.class , () -> { this.failEx( CAUSE_EX ); } );
 	}
 	
 	@Test

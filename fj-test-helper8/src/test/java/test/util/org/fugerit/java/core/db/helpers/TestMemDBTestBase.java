@@ -1,4 +1,4 @@
-package test.org.fugerit.java.core.db.helpers;
+package test.util.org.fugerit.java.core.db.helpers;
 
 import java.sql.ResultSet;
 import java.sql.Statement;

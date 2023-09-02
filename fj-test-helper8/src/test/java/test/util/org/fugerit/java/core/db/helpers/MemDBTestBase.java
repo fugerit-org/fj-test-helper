@@ -1,4 +1,4 @@
-package test.org.fugerit.java.core.db.helpers;
+package test.util.org.fugerit.java.core.db.helpers;
 
 import org.junit.BeforeClass;
 
@@ -8,7 +8,7 @@ public class MemDBTestBase extends MemDBJunitBase {
 
 	@BeforeClass
 	public static void init() {
-    	MemDBHelper.init();
+    	TestMemDBHelper.init();
 	}
 	
 }

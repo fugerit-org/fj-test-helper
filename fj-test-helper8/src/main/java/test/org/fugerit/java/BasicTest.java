@@ -9,11 +9,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class BasicTest {
 
-	protected final static Logger logger = LoggerFactory.getLogger( BasicTest.class );
+	protected static final Logger logger = log;	// this variable is kept for compatibility
 	
 	protected void failEx( Exception e ) {
 		String message = "Error : "+e;

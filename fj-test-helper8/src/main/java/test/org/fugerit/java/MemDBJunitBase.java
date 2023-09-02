@@ -11,22 +11,12 @@ import test.org.fugerit.java.helpers.FailHelper;
 
 public class MemDBJunitBase extends BasicTest {
 
-	private Connection conn;
-
-	public MemDBJunitBase( boolean fail ) {
-		try {
-			this.conn = MemTestDBHelper.newConnection( fail );
-		} catch ( Exception e) {
-			throw new ConfigRuntimeException( "Init error "+e, e );
-		}
-	}
-	
-	public MemDBJunitBase() {
-		this( FailHelper.NO_FAIL );
-	}
-
 	public Connection getConnection() {
-		return this.conn;
+		try {
+			return MemTestDBHelper.newConnection( FailHelper.NO_FAIL );
+		} catch (Exception e) {
+			throw new ConfigRuntimeException( e );
+		}
 	}
 	
 	public void simpleTestSelectWorker( String select ) {
@@ -37,7 +27,7 @@ public class MemDBJunitBase extends BasicTest {
 			while ( rs.next() ) {
 				read++;
 			}
-			logger.info( "total record read from table : "+read );
+			logger.info( "total record read from table : {}", read );
 		} catch (Exception e) {
 			this.failEx(e);
 		}

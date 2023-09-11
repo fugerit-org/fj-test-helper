@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [workflow deploy on branch](.github/workflows/deploy_maven_package.yml) (#2)
 - Changelog style based on : [https://github.com/olivierlacan/keep-a-changelog](https://github.com/olivierlacan/keep-a-changelog)
 - New function API in BasicTest (runTestEx, runTestSilent, runTestCustom based on SafeFunction.apply())
 

@@ -7,7 +7,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.function.Consumer;
 
+import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.function.UnsafeVoid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,10 +21,30 @@ public class BasicTest {
 
 	protected static Logger logger = LoggerFactory.getLogger( BasicTest.class ); // this variable is kept for compatibility
 	
-	protected void failEx( Exception e ) {
-		String message = "Error : "+e;
+	public static final Consumer<Exception> EX_CONSUMER_FAIL = e -> {
+		String message = "Error : "+e.getMessage();
 		log.error( message, e );
 		fail( message );
+	};
+	
+	public static final Consumer<Exception> EX_CONSUMER_LOG = e -> {
+		log.error( "Suppress exception : "+e.getMessage(), e );
+	};
+	
+	public static void runTestEx( UnsafeVoid<Exception> fun ) {
+		SafeFunction.apply( fun, EX_CONSUMER_FAIL );
+	}
+	
+	public static void runTestSilent( UnsafeVoid<Exception> fun ) {
+		SafeFunction.apply( fun, EX_CONSUMER_LOG );
+	}
+	
+	public static void runTestCustom( UnsafeVoid<Exception> fun, Consumer<Exception> exHandler ) {
+		SafeFunction.apply( fun, exHandler );
+	}
+
+	protected void failEx( Exception e ) {
+		EX_CONSUMER_FAIL.accept(e);
 	}
 	
 	public Object fullSerializationTest( Object value ) throws IOException {

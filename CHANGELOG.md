@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2023-09-24
+
+### Changed
+
+- jersey dependency set to default scope in module fj-test-helper-java-jaxrs
+
 ## [0.5.1] - 2023-09-24
 
 ### Added
@@ -14,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Code of conduct badge and file
 - badges for sonar cloud, license, maven repo central and changelog
 - [Sample jdk compatibility check workflow on branch develop](.github/workflows/build_maven_compatibility.yml)
+- fj-test-helper-java-jaxrs module
 
 ### Changed
 

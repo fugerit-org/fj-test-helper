@@ -27,9 +27,7 @@ public class BasicTest {
 		fail( message );
 	};
 	
-	public static final Consumer<Exception> EX_CONSUMER_LOG = e -> {
-		log.error( "Suppress exception : "+e.getMessage(), e );
-	};
+	public static final Consumer<Exception> EX_CONSUMER_LOG = e -> log.error( "Suppress exception : "+e.getMessage(), e );
 	
 	public static void runTestEx( UnsafeVoid<Exception> fun ) {
 		SafeFunction.apply( fun, EX_CONSUMER_FAIL );

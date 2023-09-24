@@ -17,9 +17,7 @@ public class TestInputStreamFail extends BasicTest {
 	public void testInitFail() throws IOException {
 		runTestEx( () -> {
 			try ( InputStreamFail is = new InputStreamFail() ) {
-				Assert.assertThrows( ConfigRuntimeException.class, () -> {
-					StreamIO.readString(is);
-				} );
+				Assert.assertThrows( ConfigRuntimeException.class, () -> StreamIO.readString(is) );
 			}
 		} );
 	}
@@ -28,7 +26,8 @@ public class TestInputStreamFail extends BasicTest {
 	public void voidTestInitOk() {
 		runTestEx( () -> {
 			try ( InputStreamFail is = new InputStreamFail( FailHelper.NO_FAIL ) ) {
-				logger.info( "test {}", StreamIO.readString(is) );
+				boolean ok = StreamIO.readString( is ).length() == 0;
+				Assert.assertTrue( ok );
 			}
 		} );
 	}

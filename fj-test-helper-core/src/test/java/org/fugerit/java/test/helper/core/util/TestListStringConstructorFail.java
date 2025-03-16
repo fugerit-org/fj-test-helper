@@ -10,14 +10,15 @@ class TestListStringConstructorFail {
 	@Test
 	void testInitFail() {
 		Assertions.assertThrows( ConfigRuntimeException.class , () -> {
-			new ListConstructorFail<String>();
+			new ListStringConstructorFail( FailHelper.DO_FAIL );
 		} );
 	}
 	
 	@Test
 	void testInitOk() {
-		Object obj = new ListConstructorFail<String>( FailHelper.NO_FAIL );
-		Assertions.assertNotNull( obj );
+		Assertions.assertNotNull( new ListStringConstructorFail( new FailHelper( FailHelper.NO_FAIL ) ) );
+		Assertions.assertNotNull( new ListStringConstructorFail( FailHelper.NO_FAIL ) );
+		Assertions.assertNotNull( new ListStringConstructorFail() );
 	}
 	
 }

@@ -9,17 +9,14 @@ class TestMapConstructorFail {
 
 	@Test
 	void testInitFail() {
-		Assertions.assertThrows( ConfigRuntimeException.class , MapConstructorFail::new );
+		Assertions.assertThrows( ConfigRuntimeException.class , () -> new MapConstructorFail( FailHelper.DO_FAIL ) );
 	}
 	
 	@Test
 	void testInitOk() {
-		Assertions.assertNotNull( new MapConstructorFail<>( FailHelper.NO_FAIL ) );
-		boolean failValue = FailHelper.isDefaultBehaviour();
-		FailHelper.setDefaultBehaviour( FailHelper.NO_FAIL );
-		Assertions.assertNotNull( new MapConstructorFail<>() );
-		FailHelper.setDefaultBehaviour( failValue );
-		Assertions.assertTrue( Boolean.TRUE );
+		Assertions.assertNotNull( new MapConstructorFail( new FailHelper( FailHelper.NO_FAIL ) ) );
+		Assertions.assertNotNull( new MapConstructorFail( FailHelper.NO_FAIL ) );
+		Assertions.assertNotNull( new MapConstructorFail() );
 	}
 	
 }

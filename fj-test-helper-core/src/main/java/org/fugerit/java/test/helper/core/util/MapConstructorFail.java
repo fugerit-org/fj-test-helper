@@ -6,15 +6,22 @@ import java.util.HashMap;
 
 public class MapConstructorFail<K, V> extends HashMap<K, V> {
 
-	private static final long serialVersionUID = 1769331402144969088L;
+	private static final long serialVersionUID = 17693314144969088L;
+
+	private FailHelper helper;
+
+	public MapConstructorFail( FailHelper helper ) {
+		super();
+		this.helper = helper;
+		this.helper.handleFail();
+	}
 
 	public MapConstructorFail(boolean fail ) {
-		super();
-		FailHelper.fail( fail );
+		this( new FailHelper( fail ) );
 	}
 
 	public MapConstructorFail() {
-		this( FailHelper.isDefaultBehaviour() );
+		this( new FailHelper() );
 	}
 	
 }

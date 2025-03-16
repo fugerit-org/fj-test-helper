@@ -9,18 +9,14 @@ class TestListConstructorFail {
 
 	@Test
 	void testInitFail() {
-		Assertions.assertThrows( ConfigRuntimeException.class , ListStringConstructorFail::new );
+		Assertions.assertThrows( ConfigRuntimeException.class , () ->  new ListConstructorFail<>( FailHelper.DO_FAIL ) );
 	}
 	
 	@Test
 	void testInitOk() {
-		Object obj = new ListStringConstructorFail( FailHelper.NO_FAIL );
-		Assertions.assertNotNull( obj );
-		boolean failValue = FailHelper.isDefaultBehaviour();
-		FailHelper.setDefaultBehaviour( FailHelper.NO_FAIL );
+		Assertions.assertNotNull( new ListConstructorFail( new FailHelper( FailHelper.NO_FAIL ) ) );
+		Assertions.assertNotNull( new ListConstructorFail<>( FailHelper.NO_FAIL ) );
 		Assertions.assertNotNull( new ListStringConstructorFail() );
-		FailHelper.setDefaultBehaviour( failValue );
-		Assertions.assertTrue( Boolean.TRUE );
 	}
 	
 }

@@ -9,13 +9,21 @@ public class ListStringConstructorFail extends ArrayList<String> {
 
 	private static final long serialVersionUID = 1769331402144969088L;
 
-	public ListStringConstructorFail( boolean fail ) {
+	private FailHelper helper;
+
+	public ListStringConstructorFail( FailHelper helper ) {
 		super();
-		FailHelper.fail( fail );
+		this.helper = helper;
+		this.helper.handleFail();
+	}
+
+
+	public ListStringConstructorFail( boolean fail ) {
+		this( new FailHelper( fail ) );
 	}
 	
 	public ListStringConstructorFail() {
-		this( FailHelper.DO_FAIL );
+		this( new FailHelper() );
 	}
 	
 }

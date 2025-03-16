@@ -16,7 +16,7 @@ class TestListConstructorFail {
 	void testInitOk() {
 		Assertions.assertNotNull( new ListConstructorFail( new FailHelper( FailHelper.NO_FAIL ) ) );
 		Assertions.assertNotNull( new ListConstructorFail<>( FailHelper.NO_FAIL ) );
-		Assertions.assertNotNull( new ListStringConstructorFail() );
+		Assertions.assertNotNull( new ListConstructorFail() );
 	}
 	
 }

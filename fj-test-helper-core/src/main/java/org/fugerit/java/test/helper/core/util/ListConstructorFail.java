@@ -11,7 +11,7 @@ public class ListConstructorFail<T> extends ArrayList<T> {
 
 	private static final long serialVersionUID = 1769331402144969088L;
 
-	private FailHelper helper;
+	private transient FailHelper helper;
 
 	public ListConstructorFail( FailHelper helper ) {
 		super();

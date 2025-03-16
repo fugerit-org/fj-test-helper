@@ -9,7 +9,7 @@ public class ListStringConstructorFail extends ArrayList<String> {
 
 	private static final long serialVersionUID = 1769331402144969088L;
 
-	private FailHelper helper;
+	private transient FailHelper helper;
 
 	public ListStringConstructorFail( FailHelper helper ) {
 		super();

@@ -8,7 +8,7 @@ public class MapConstructorFail<K, V> extends HashMap<K, V> {
 
 	private static final long serialVersionUID = 17693314144969088L;
 
-	private FailHelper helper;
+	private transient FailHelper helper;
 
 	public MapConstructorFail( FailHelper helper ) {
 		super();
@@ -23,5 +23,10 @@ public class MapConstructorFail<K, V> extends HashMap<K, V> {
 	public MapConstructorFail() {
 		this( new FailHelper() );
 	}
-	
+
+	@Override
+	public boolean equals( Object o ) {
+		return super.equals( o );
+	}
+
 }

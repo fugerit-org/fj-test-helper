@@ -10,8 +10,8 @@
 		<version>0.5.2</version>
 	</parent>
 
-	<name>fj-test-helper8</name>
-	<description>Helper classes for building junit (base on jdk 8)</description>
+	<name>fj-test-helper-core</name>
+	<description>Helper classes for building Unit Test</description>
 	<url>https://www.fugerit.org/perm/jupiter/</url>
 
 	<licenses>

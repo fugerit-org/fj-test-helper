@@ -20,8 +20,7 @@ import java.io.IOException;
 	@Test 
 	void voidTestInitOk() throws IOException {
 		try ( InputStreamFail is = new InputStreamFail( FailHelper.NO_FAIL ) ) {
-			boolean ok = StreamIO.readString( is ).length() == 0;
-			Assertions.assertTrue( ok );
+			Assertions.assertTrue( StreamIO.readString( is ).isEmpty() );
 		}
 	}
 	

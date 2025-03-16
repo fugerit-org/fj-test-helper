@@ -9,9 +9,7 @@ class TestObjectConstructorFail {
 
 	@Test
 	void testInitFail() {
-		Assertions.assertThrows( ConfigRuntimeException.class , () -> {
-			new ObjectConstructorFail();
-		} );
+		Assertions.assertThrows( ConfigRuntimeException.class , ObjectConstructorFail::new );
 	}
 
 	@Test

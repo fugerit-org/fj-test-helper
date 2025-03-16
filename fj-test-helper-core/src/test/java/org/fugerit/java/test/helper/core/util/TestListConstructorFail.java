@@ -9,9 +9,7 @@ class TestListConstructorFail {
 
 	@Test
 	void testInitFail() {
-		Assertions.assertThrows( ConfigRuntimeException.class , () -> {
-			new ListStringConstructorFail();
-		} );
+		Assertions.assertThrows( ConfigRuntimeException.class , ListStringConstructorFail::new );
 	}
 	
 	@Test

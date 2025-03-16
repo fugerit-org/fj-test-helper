@@ -24,4 +24,11 @@ public class InputStreamFail extends InputStream {
 		return -1;
 	}
 
+	@Override
+	public int read(byte[] b, int off, int len) throws IOException {
+		FailHelper.fail( this.fail );
+		// it is only a test class, no need to do anything
+		return -1;
+	}
+
 }

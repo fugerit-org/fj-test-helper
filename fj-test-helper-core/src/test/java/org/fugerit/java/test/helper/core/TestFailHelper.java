@@ -8,9 +8,7 @@ class TestFailHelper {
 
 	@Test
 	void testBase() {
-		Assertions.assertThrows( ConfigRuntimeException.class , () -> {
-			FailHelper.fail();
-		});
+		Assertions.assertThrows( ConfigRuntimeException.class , FailHelper::fail );
 	}
 	
 	@Test

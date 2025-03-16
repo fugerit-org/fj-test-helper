@@ -26,8 +26,7 @@ public class TestInputStreamFail extends BasicTest {
 	public void voidTestInitOk() {
 		runTestEx( () -> {
 			try ( InputStreamFail is = new InputStreamFail( FailHelper.NO_FAIL ) ) {
-				boolean ok = StreamIO.readString( is ).length() == 0;
-				Assert.assertTrue( ok );
+				Assert.assertTrue( StreamIO.readString( is ).isEmpty() );
 			}
 		} );
 	}

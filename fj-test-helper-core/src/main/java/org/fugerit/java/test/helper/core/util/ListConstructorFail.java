@@ -15,7 +15,7 @@ public class ListConstructorFail<T> extends ArrayList<T> {
 	}
 	
 	public ListConstructorFail() {
-		this( FailHelper.DO_FAIL );
+		this( FailHelper.isDefaultBehaviour() );
 	}
 	
 }

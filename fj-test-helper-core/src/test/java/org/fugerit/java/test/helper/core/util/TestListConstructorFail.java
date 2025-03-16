@@ -16,6 +16,11 @@ class TestListConstructorFail {
 	void testInitOk() {
 		Object obj = new ListStringConstructorFail( FailHelper.NO_FAIL );
 		Assertions.assertNotNull( obj );
+		boolean failValue = FailHelper.isDefaultBehaviour();
+		FailHelper.setDefaultBehaviour( FailHelper.NO_FAIL );
+		Assertions.assertNotNull( new ListStringConstructorFail() );
+		FailHelper.setDefaultBehaviour( failValue );
+		Assertions.assertTrue( Boolean.TRUE );
 	}
 	
 }

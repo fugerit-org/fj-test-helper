@@ -10,9 +10,7 @@ public class TestFailHelper {
 
 	@Test
 	public void testBase() {
-		Assert.assertThrows( ConfigRuntimeException.class , () -> {
-			FailHelper.fail();
-		});
+		Assert.assertThrows( ConfigRuntimeException.class , FailHelper::fail );
 	}
 	
 	@Test

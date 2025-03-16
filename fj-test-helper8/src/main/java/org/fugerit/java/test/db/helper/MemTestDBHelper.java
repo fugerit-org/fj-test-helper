@@ -116,7 +116,7 @@ public class MemTestDBHelper {
 		try ( Statement stm = conn.createStatement() ) {
 			while ( reader.hasNext() ) {
 				String sql = reader.next();
-				if ( sql.trim().length() > 0 ) {
+				if ( !sql.trim().isEmpty() ) {
 					stm.execute( sql );
 					res++;	
 				}

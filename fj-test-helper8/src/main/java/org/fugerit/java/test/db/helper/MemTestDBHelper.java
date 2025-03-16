@@ -16,6 +16,7 @@ import org.fugerit.java.core.db.metadata.DataBaseInfo;
 
 import lombok.Getter;
 import lombok.ToString;
+import org.fugerit.java.core.function.SafeFunction;
 import test.org.fugerit.java.helpers.FailHelper;
 
 @ToString
@@ -42,34 +43,29 @@ public class MemTestDBHelper {
 	private static Properties cf;
 	
 	private static Connection newConnection( Properties props ) {
-		Connection conn = null;
-		try {
+		return SafeFunction.get( () -> {
 			Class.forName( props.getProperty( DRV ) );
-			conn = DriverManager.getConnection( props.getProperty( URL ), props.getProperty( USR ), props.getProperty( PWD ) );
-		} catch (SQLException | ClassNotFoundException e) {
-			throw new ConfigRuntimeException( e );
-		}
-		return conn;
-		
+			return  DriverManager.getConnection( props.getProperty( URL ), props.getProperty( USR ), props.getProperty( PWD ) );
+		} );
 	}
 
     public static Properties initWorker(  String dbConnPath, String... dbInitScripts )
     {
-    	Properties props = null;
-    	try ( InputStream is = MemTestDBHelper.class.getClassLoader().getResourceAsStream( dbConnPath ) ) {
-    		props = new Properties();
-			props.load( is );
-        	try ( Connection conn = newConnection( props ) ) {
-        		for ( int k=0; k<dbInitScripts.length; k++ ) {
-        			try ( SQLScriptReader reader = new SQLScriptReader( MemTestDBHelper.class.getClassLoader().getResourceAsStream( dbInitScripts[k] ) ) ) {
-            			executeAll(reader, conn);
-            		}	
-        		}
-    		}	
-    	} catch (Exception e) {
-    		throw new ConfigRuntimeException( e );
-    	}
-    	return props;
+		return SafeFunction.get( () -> {
+			Properties props = null;
+			try ( InputStream is = MemTestDBHelper.class.getClassLoader().getResourceAsStream( dbConnPath ) ) {
+				props = new Properties();
+				props.load( is );
+				try ( Connection conn = newConnection( props ) ) {
+					for ( int k=0; k<dbInitScripts.length; k++ ) {
+						try ( SQLScriptReader reader = new SQLScriptReader( MemTestDBHelper.class.getClassLoader().getResourceAsStream( dbInitScripts[k] ) ) ) {
+							executeAll(reader, conn);
+						}
+					}
+				}
+			}
+			return props;
+		} );
     } 
 	
     public static void init( String dbConnPath, String... dbInitScripts )
@@ -102,11 +98,7 @@ public class MemTestDBHelper {
 			}
 			@Override
 			public Connection getConnection() throws DAOException {
-				try {
-					return newConnection();
-				} catch (Exception e) {
-					throw new DAOException( e );
-				}
+				return DAOException.get( () -> newConnection() );
 			}
 		};
 	}

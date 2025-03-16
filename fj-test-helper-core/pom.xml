@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-test-helper-java-jaxrs</artifactId>
+	<artifactId>fj-test-helper-core</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,8 +10,8 @@
 		<version>0.5.2</version>
 	</parent>
 
-	<name>fj-test-helper-java-jaxrs</name>
-	<description>Jelper modules to test jaxrs API (not jakarta)</description>
+	<name>fj-test-helper8</name>
+	<description>Helper classes for building junit (base on jdk 8)</description>
 	<url>https://www.fugerit.org/perm/jupiter/</url>
 
 	<licenses>
@@ -35,22 +35,15 @@
 	<dependencies>
 
 		<dependency>
-		    <groupId>org.glassfish.jersey.core</groupId>
-		    <artifactId>jersey-server</artifactId>
-		    <version>2.40</version>
-		</dependency>
-
-		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-simple</artifactId>
-		    <scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit-version}</version>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-core</artifactId>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>

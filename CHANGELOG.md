@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- core module (with code refactoring)
+
+### Changed
+
+- fj-bom version set to 1.7.2
+
+### Fixed
+
+- GitHub workflows
+
 ## [0.5.2] - 2023-09-24
 
 ### Changed

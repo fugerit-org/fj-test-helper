@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-bom</artifactId>
-		<version>1.4.2</version>
+		<version>1.7.2</version>
 		<relativePath></relativePath>
 	</parent>
 
@@ -68,6 +68,7 @@
 	</distributionManagement>
 
 	<modules>
+		<module>fj-test-helper-core</module>
 		<module>fj-test-helper8</module>
 		<module>fj-test-helper-java-jaxrs</module>
 	</modules>
@@ -88,7 +89,7 @@
 				<artifactId>fj-test-helper8</artifactId>
 				<version>${project.version}</version>
 				<scope>provided</scope>
-			</dependency>			
+			</dependency>
 
 		</dependencies>
 
@@ -127,11 +128,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>			
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

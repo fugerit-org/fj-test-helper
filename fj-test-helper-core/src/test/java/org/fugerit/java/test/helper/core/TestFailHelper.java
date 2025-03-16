@@ -33,5 +33,15 @@ class TestFailHelper {
 		ok = true;
 		Assertions.assertTrue( ok );
 	}
+
+	@Test
+	void testMessageDifferentDefault() {
+		boolean failValue = FailHelper.isDefaultBehaviour();
+		FailHelper.setDefaultBehaviour( FailHelper.NO_FAIL );
+		FailHelper.fail();
+		FailHelper.fail( "test" );
+		FailHelper.setDefaultBehaviour( failValue );
+		Assertions.assertTrue( Boolean.TRUE );
+	}
 	
 }

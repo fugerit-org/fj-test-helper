@@ -10,9 +10,19 @@ public class FailHelper {
 	public static final boolean DO_FAIL = true;
 	
 	public static final boolean NO_FAIL = false;
-	
+
+	private static boolean defaultBehaviour = DO_FAIL;
+
 	public static final String DEFAULT_FAIL_MESSAGE = "Expected exception for test design";
-	
+
+	public static boolean isDefaultBehaviour() {
+		return defaultBehaviour;
+	}
+
+	public static void setDefaultBehaviour(boolean defaultBehaviour) {
+		FailHelper.defaultBehaviour = defaultBehaviour;
+	}
+
 	public static void fail( boolean fail, String message ) {
 		if ( fail ) {
 			throw new ConfigRuntimeException( message );
@@ -24,11 +34,11 @@ public class FailHelper {
 	}
 	
 	public static void fail( String message ) {
-		fail( DO_FAIL, message );
+		fail( defaultBehaviour, message );
 	}
 	
 	public static void fail() {
-		fail( DO_FAIL, DEFAULT_FAIL_MESSAGE );
+		fail( defaultBehaviour, DEFAULT_FAIL_MESSAGE );
 	}
 	
 }

@@ -14,7 +14,7 @@ public class MapConstructorFail<K, V> extends HashMap<K, V> {
 	}
 
 	public MapConstructorFail() {
-		this( FailHelper.DO_FAIL );
+		this( FailHelper.isDefaultBehaviour() );
 	}
 	
 }

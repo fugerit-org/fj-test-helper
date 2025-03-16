@@ -15,6 +15,11 @@ class TestMapConstructorFail {
 	@Test
 	void testInitOk() {
 		Assertions.assertNotNull( new MapConstructorFail<>( FailHelper.NO_FAIL ) );
+		boolean failValue = FailHelper.isDefaultBehaviour();
+		FailHelper.setDefaultBehaviour( FailHelper.NO_FAIL );
+		Assertions.assertNotNull( new MapConstructorFail<>() );
+		FailHelper.setDefaultBehaviour( failValue );
+		Assertions.assertTrue( Boolean.TRUE );
 	}
 	
 }

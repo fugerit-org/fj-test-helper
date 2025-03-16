@@ -25,6 +25,11 @@ public class MapConstructorFail<K, V> extends HashMap<K, V> {
 	}
 
 	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
 	public boolean equals( Object o ) {
 		return super.equals( o );
 	}

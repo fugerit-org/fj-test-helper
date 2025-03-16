@@ -3,6 +3,9 @@ package org.fugerit.java.test.helper.core;
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 
+/**
+ * Helper class to handle failed test condition
+ */
 @Slf4j
 public class FailHelper {
 

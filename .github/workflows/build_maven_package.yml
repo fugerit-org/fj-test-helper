@@ -14,8 +14,7 @@ on:
   push:
     branches:
       - main
-      - branch-sonarcloud
-      - branch-test
+      - branch-preview
   pull_request:
     types:
       - opened

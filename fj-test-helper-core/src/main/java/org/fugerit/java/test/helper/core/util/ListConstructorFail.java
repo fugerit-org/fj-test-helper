@@ -28,5 +28,10 @@ public class ListConstructorFail<T> extends ArrayList<T> {
 	public ListConstructorFail() {
 		this( new FailHelper() );
 	}
-	
+
+	@Override
+	public boolean equals( Object o ) {
+		return super.equals( o );
+	}
+
 }

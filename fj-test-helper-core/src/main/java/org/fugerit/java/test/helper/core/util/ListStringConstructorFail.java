@@ -17,13 +17,17 @@ public class ListStringConstructorFail extends ArrayList<String> {
 		this.helper.handleFail();
 	}
 
-
 	public ListStringConstructorFail( boolean fail ) {
 		this( new FailHelper( fail ) );
 	}
 	
 	public ListStringConstructorFail() {
 		this( new FailHelper() );
+	}
+
+	@Override
+	public boolean equals( Object o ) {
+		return super.equals( o );
 	}
 	
 }
